@@ -157,7 +157,6 @@ date -R
 echo "Running cmqttd with flags: ${CMQTTD_ARGS}"
 
 if [ -n "${CMQTTD_CBUS_NETWORK}" ]; then
-    echo "Loading C-Bus network ${CMQTTD_CBUS_NETWORK}"
     CMQTTD_ARGS="${CMQTTD_ARGS} --cbus-network  ${CMQTTD_CBUS_NETWORK}"
 fi
 
