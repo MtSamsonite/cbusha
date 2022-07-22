@@ -26,6 +26,8 @@ CMQTTD_LOG_LEVEL=$(bashio::config 'log_verbosity')
 
 echo "Completed importing addon configuration options"
 
+CMQTTD_CBUS_NETWORK="254"
+
 # The following variables values were passed through via the Home Assistant add on configuration options
 echo "The following variable values were passed through via the Home Assistant add on configuration options"
 echo "MQTT_USER = $MQTT_USER"
@@ -153,6 +155,12 @@ echo -n "Current time: "
 date -R
 
 echo "Running cmqttd with flags: ${CMQTTD_ARGS}"
+
+if [ -n "${CMQTTD_CBUS_NETWORK}" ]; then
+    echo "Loading C-Bus network ${CMQTTD_CBUS_NETWORK}"
+    CMQTTD_ARGS="${CMQTTD_ARGS} --cbus-network  ${CMQTTD_CBUS_NETWORK}"
+fi
+
 cmqttd $CMQTTD_ARGS
 
 exit
